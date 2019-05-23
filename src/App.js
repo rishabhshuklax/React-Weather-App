@@ -1,26 +1,66 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+import Form from "./components/Form";
+import Result from "./components/Result";
+export default class App extends Component {
+  state = {
+    temperature: undefined,
+    city: undefined,
+    country: undefined,
+    humidity: undefined,
+    description: undefined,
+    error: undefined,
+    req: false
+  };
+  getWeather = async e => {
+    e.preventDefault();
+    const city = e.target.elements[0].value;
+    const country = e.target.elements[1].value;
+    const dataJSON = await fetch(
+      `http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=ad21870045862f95aa7a65818ea7edc7`
+    );
+    const data = await dataJSON.json();
+    console.log(data);
+    this.setState({
+      temperature: Math.floor(data.main.temp - 273.15),
+      city: data.name,
+      country: data.country,
+      humidity: data.main.humidity,
+      description: data.weather[0].description,
+      req: true
+    });
+  };
+  render() {
+    return (
+      <>
+        <nav
+          class="navbar navbar-expand-md bg-dark navbar-dark"
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            padding: 10
+          }}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+          <h1 className="navbar-brand" style={{ fontSize: "2.5rem" }}>
+            Weather App
+          </h1>
+        </nav>
+        <div className="container">
+          <div
+            className=" form-container"
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              justifyContent: "space-around"
+            }}
+          >
+            <Form getWeather={this.getWeather} />
+            <Result data={this.state} />
+          </div>
+        </div>
+      </>
+    );
+  }
 }
-
-export default App;
