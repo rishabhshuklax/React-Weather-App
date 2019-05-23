@@ -1,1 +1,1 @@
-https://blur-weather.netlify.com/api.openweathermap.org/*    http://api.openweathermap.org/:splat   200
+https://blur-weather.netlify.com/api.openweathermap.org/*    https://api.openweathermap.org/:splat   200
