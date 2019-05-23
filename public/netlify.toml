@@ -1,0 +1,5 @@
+[[redirects]]
+ from = "https://blur-weather.netlify.com/api.openweathermap.org/*"
+ to = "http://api.openweathermap.org/:splat"
+ status = 200
+ force = true
