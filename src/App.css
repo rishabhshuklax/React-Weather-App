@@ -19,6 +19,7 @@ nav {
     #221318c9 70%,
     #2c1010d8 84%
   );
+  transition: all 0.6s ease-in-out;
 }
 .form-container form {
   width: 350px;
@@ -57,7 +58,22 @@ h4 {
   color: rgb(245, 207, 138);
 }
 @media only screen and (max-width: 750px) {
+  .form-container {
+    height: fit-content;
+    margin-top: 20px;
+  }
   .container {
     box-shadow: -11px -8px 20px 6px #dbdbdba1;
+    transform: skewY(0deg);
+  }
+  .center-container {
+    transform: skewY(0deg);
+  }
+  .result-container {
+    transform: skewY(0deg);
+  }
+  h4 {
+    transform: skewY(0deg);
+    font-size: 18px;
   }
 }
