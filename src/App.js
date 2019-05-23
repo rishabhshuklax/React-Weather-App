@@ -19,7 +19,7 @@ export default class App extends Component {
     const city = e.target.elements[0].value;
     const country = e.target.elements[1].value;
     const dataJSON = await fetch(
-      `http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=ad21870045862f95aa7a65818ea7edc7`
+      `https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=ad21870045862f95aa7a65818ea7edc7`
     );
     const data = await dataJSON.json();
     console.log(data);
